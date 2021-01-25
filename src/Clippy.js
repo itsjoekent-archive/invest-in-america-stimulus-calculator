@@ -60,6 +60,10 @@ const Bubble = styled.div`
       right: 52px;
     }
   }
+
+  @media (min-width: 768px) {
+    top: -154px;
+  }
 `;
 
 const BubbleCopy = styled.p`
@@ -69,80 +73,84 @@ const BubbleCopy = styled.p`
   font-size: 16px;
   text-align: left;
   color: #000000;
+
+  @media (min-width: 768px) {
+    font-size: 22px;
+  }
 `;
 
 const AvatarWrapper = styled.div`
   position: relative;
 `;
 
-const Eye = styled.span`
-  display: none;
-  opacity: 0;
-  position: absolute;
-  z-index: 10;
-
-  top: 36px;
-  left: 54px;
-
-  &:last-of-type {
-    left: 78px;
-  }
-
-  height: 18px;
-  width: 18px;
-  border: 1px solid #000000;
-  border-radius: 50%;
-  background: #FFFFFF;
-
-  &::after {
-    position: absolute;
-    bottom: 5px;
-    right: 9px;
-    width: 8px;
-    height: 8px;
-    background: #000000;
-    border-radius: 50%;
-    content: '';
-  }
-
-  @media (min-width: 768px) and (pointer: fine) {
-    display: inline-block;
-    animation: ${fadeIn} 1.5s forwards;
-  }
-`;
+// const Eye = styled.span`
+//   display: none;
+//   opacity: 0;
+//   position: absolute;
+//   z-index: 10;
+//
+//   top: 36px;
+//   left: 54px;
+//
+//   &:last-of-type {
+//     left: 78px;
+//   }
+//
+//   height: 18px;
+//   width: 18px;
+//   border: 1px solid #000000;
+//   border-radius: 50%;
+//   background: #FFFFFF;
+//
+//   &::after {
+//     position: absolute;
+//     bottom: 5px;
+//     right: 9px;
+//     width: 8px;
+//     height: 8px;
+//     background: #000000;
+//     border-radius: 50%;
+//     content: '';
+//   }
+//
+//   @media (min-width: 768px) and (pointer: fine) {
+//     display: inline-block;
+//     animation: ${fadeIn} 1.5s forwards;
+//   }
+// `;
 
 export default function Clippy(props) {
   const { message } = props;
 
-  const leftEyeRef = React.useRef(null);
-  const rightEyeRef = React.useRef(null);
-
-  React.useEffect(() => {
-    function adjustEye(eye, event) {
-      const boundingBox = eye.getBoundingClientRect();
-
-      const x = (boundingBox.left) + (boundingBox.width / 2);
-      const y = (boundingBox.top) + (boundingBox.height / 2);
-
-      const radians = Math.atan2(event.pageX - x, event.pageY - y);
-      const rotation = (radians * (180 / Math.PI) * -1) - 90;
-
-      eye.style.transform = `rotate(${rotation}deg)`;
-    }
-
-    function onMouseMove(event) {
-      if (leftEyeRef.current) {
-        adjustEye(leftEyeRef.current, event);
-      }
-
-      if (rightEyeRef.current) {
-        adjustEye(rightEyeRef.current, event);
-      }
-    }
-
-    window.addEventListener('mousemove', onMouseMove);
-    return () => window.removeEventListener('mousemove', onMouseMove);
-  }, []);
+  // const leftEyeRef = React.useRef(null);
+  // const rightEyeRef = React.useRef(null);
+  //
+  // React.useEffect(() => {
+  //   function adjustEye(eye, event) {
+  //     const boundingBox = eye.getBoundingClientRect();
+  //
+  //     const x = (boundingBox.left) + (boundingBox.width / 2);
+  //     const y = (boundingBox.top) + (boundingBox.height / 2);
+  //
+  //     const radians = Math.atan2(event.pageX - x, event.pageY - y);
+  //     const rotation = (radians * (180 / Math.PI) * -1) - 90;
+  //
+  //     eye.style.transform = `rotate(${rotation}deg)`;
+  //   }
+  //
+  //   function onMouseMove(event) {
+  //     if (leftEyeRef.current) {
+  //       adjustEye(leftEyeRef.current, event);
+  //     }
+  //
+  //     if (rightEyeRef.current) {
+  //       adjustEye(rightEyeRef.current, event);
+  //     }
+  //   }
+  //
+  //   window.addEventListener('mousemove', onMouseMove);
+  //   return () => window.removeEventListener('mousemove', onMouseMove);
+  // }, []);
 
   return ReactDOM.createPortal((
     <Container>
@@ -152,8 +160,8 @@ export default function Clippy(props) {
             <BubbleCopy>{message}</BubbleCopy>
           </Bubble>
         )}
-        <Eye ref={leftEyeRef} />
-        <Eye ref={rightEyeRef} />
+        {/* <Eye ref={leftEyeRef} />
+        <Eye ref={rightEyeRef} /> */}
         <Avatar src={mitch} alt="Senator Mitch McConnell" />
       </AvatarWrapper>
     </Container>

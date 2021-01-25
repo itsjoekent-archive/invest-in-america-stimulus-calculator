@@ -153,14 +153,14 @@ export default function Calculator(props) {
   const [totalMoneySpent, setTotalMoneySpent] = React.useState(0);
   const [message, setMessage] = React.useState(null);
 
-  const hasReachedEnd = totalSelections >= 4 && totalMoneySpent >= 600;
+  const hasReachedEnd = totalSelections >= optionsList.length;
 
   React.useEffect(() => {
     if (hasReachedEnd) {
       const timeoutId = setTimeout(() => {
         fadeToCta();
         setMessage(null);
-      }, 4000);
+      }, 2000);
 
       return () => clearTimeout(timeoutId);
     }
