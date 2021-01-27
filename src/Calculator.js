@@ -191,7 +191,7 @@ export default function Calculator(props) {
       <TitleContainer>
         <Title>Spend your stimulus check!</Title>
         <Subtitle>
-          <em>Congratulations!</em> After months of suffering through a pandemic and economic collapse, you just got a whopping $600 from the United States Government to help you get by.
+          <em>Congratulations!</em> After months of suffering through a pandemic and economic collapse, you just got a whopping $600 from Senate <del>Majority</del> Minority Leader Mitch McConnell to help you get by.
         </Subtitle>
       </TitleContainer>
       <CtaContainer>
